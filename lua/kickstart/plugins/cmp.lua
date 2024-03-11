@@ -48,7 +48,11 @@ return {
         -- chosen, you will need to read `:help ins-completion`
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        mapping = cmp.mapping.preset.insert {
+        mapping = {
+
+          -- Trigger manual completion with Cntrl + Space on macOS
+          ['<C-l>'] = cmp.mapping.complete(),
+
           -- Use Tab and Shift+Tab to navigate through the popup menu
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -74,9 +78,6 @@ return {
 
           -- Use Enter to confirm selection
           ['<CR>'] = cmp.mapping.confirm { select = true },
-
-          -- Trigger manual completion with Command + I on macOS
-          ['<D-i>'] = cmp.mapping.complete {},
         },
         sources = {
           { name = 'nvim_lsp' },
